@@ -1,0 +1,25 @@
+{
+  "name": "vuejs-tdc-nodejs",
+  "version": "1.0.0",
+  "description": "API para apresentação do tdc",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/narukaioh/vuejs-tdc-nodejs"
+  },
+  "keywords": [
+    "nodejs",
+    "vuejs",
+    "api",
+    "tdc",
+    "javascript"
+  ],
+  "author": "Ju Dantas",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^6.0.1"
+  }
+}
