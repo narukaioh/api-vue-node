@@ -14,7 +14,6 @@ const routes = (server) => {
     next()
   })
 
-
   server.get('/', (req, res, next) => {
     res.send('enjoy the silence!')
     next()
