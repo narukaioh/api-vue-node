@@ -5,12 +5,16 @@ const connection = mysqlServer.createConnection({
   host: 'localhost',
   user: 'root',
   password: '123456',
-  databhase: 'api_tdc'
+  database: 'api_tdc'
 })
 
-const categorias = connection.query('SELECT * FROM categorias', (error, results) => {
-  if (error) {}
-  return { categories: results }
-})
+const errorHandler = (error, msg, rejectFunction) => {
+  console.error(error)
+  rejectFunction({ error: msg })
+}
 
-module.exports = categorias
+const categoryModule = require('./categories')({ connection, errorHandler })
+
+module.exports = {
+  categories: categoryModule
+}
