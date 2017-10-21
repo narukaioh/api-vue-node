@@ -1,4 +1,6 @@
 
+const sha1 = require('sha1')
+
 const users = deps => {
   return {
     all: () => {
@@ -18,7 +20,7 @@ const users = deps => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
 
-        connection.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (error, results) => {
+        connection.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, sha1(password)], (error, results) => {
           if (error) {
             errorHandler(error, `Falha ao salvar o usuário ${email}`, reject)
             return false
@@ -27,16 +29,16 @@ const users = deps => {
         })
       })
     },
-    update: (id, email) => {
+    update: (id, password) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
 
-        connection.query('UPDATE users SET email = ? WHERE id = ?', [email, id], (error, results) => {
+        connection.query('UPDATE users SET password = ? WHERE id = ?', [sha1(password), id], (error, results) => {
           if (error || !results.affectedRows) {
-            errorHandler(error, `Falha ao atualizar o usuário ${email}`, reject)
+            errorHandler(error, `Falha ao atualizar o usuário ${id}`, reject)
             return false
           }
-          resolve({ user: { email, id }, affectedRows: results.affectedRows })
+          resolve({ user: { id }, affectedRows: results.affectedRows })
         })
       })
     },

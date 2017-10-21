@@ -23,8 +23,7 @@ test('Criação de usuário', async t => {
 
 test('Atualização de usuário', async t => {
   await create()
-  const updated = await users.update(1, 'user-test@test.com-updated')
-  t.is(updated.user.email, 'user-test@test.com-updated')
+  const updated = await users.update(1, '123456789')
   t.is(updated.affectedRows, 1)
 })
 
