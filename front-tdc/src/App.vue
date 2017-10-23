@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  .container
     el-menu(theme='default', class='el-menu-demo', mode='horizontal')
       el-menu-item(index='1'): router-link(to='add') Adicionar Pokemon
       el-menu-item(index='2')
