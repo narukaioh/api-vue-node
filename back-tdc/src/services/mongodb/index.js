@@ -8,8 +8,8 @@ const errorHandler = (error, msg, rejectFunction) => {
   rejectFunction({ error: msg })
 }
 
-const pokemons = require('./pokemons')({ errorHandler })
-console.log(pokemons)
+const pokemon = require('./pokemon')({ errorHandler })
+
 module.exports = {
-  pokemons: () => pokemons
+  pokemons: () => pokemon
 }

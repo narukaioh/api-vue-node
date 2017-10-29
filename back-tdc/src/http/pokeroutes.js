@@ -12,9 +12,9 @@ const routes = (server) => {
   })
 
   server.post('pokemon', async (req, res, next) => {
-    const { name } = req.params
+    const pokemon = req.params
     try {
-      res.json(await db.pokemons.save(name))
+      res.json(await db.pokemons().save(pokemon))
     } catch (error) {
       res.json(error)
     }
@@ -22,9 +22,9 @@ const routes = (server) => {
   })
 
   server.put('pokemon', async (req, res, next) => {
-    const { id, name } = req.params
+    const pokemon = req.params
     try {
-      res.json(await db.pokemons.update(id, name))
+      res.json(await db.pokemons().update(pokemon))
     } catch (error) {
       res.json(error)
     }
@@ -34,7 +34,7 @@ const routes = (server) => {
   server.del('pokemon', async (req, res, next) => {
     const { id } = req.params
     try {
-      res.json(await db.pokemons.del(id))
+      res.json(await db.pokemons().del(id))
     } catch (error) {
       res.json(error)
     }
