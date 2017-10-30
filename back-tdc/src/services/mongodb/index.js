@@ -5,7 +5,7 @@ mongoose.connect(process.env.MONGO_DATABASE, { useMongoClient: true })
 
 const errorHandler = (error, msg, rejectFunction) => {
   console.error(error)
-  rejectFunction({ error: msg })
+  rejectFunction({ message: msg })
 }
 
 const pokemon = require('./pokemon')({ errorHandler })

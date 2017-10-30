@@ -14,6 +14,17 @@ const db = deps => {
         })
       })
     },
+    getPokemon: (id) => {
+      return new Promise((resolve, reject) => {
+        const { errorHandler } = deps
+        Pokemon.findOne({ _id: id }, (err, result) => {
+          if (err) {
+            errorHandler(err, `Falha ao listar o pokemon de id ${id}`, reject)
+          }
+          resolve({ pokemon: result })
+        })
+      })
+    },
     save: (pokemon) => {
       return new Promise((resolve, reject) => {
         const { errorHandler } = deps
@@ -22,7 +33,7 @@ const db = deps => {
           if (err) {
             errorHandler(err, `Falha ao inserir o pokemon ${pokemon.name}`, reject)
           }
-          resolve({ pokemon: results })
+          resolve({ status: true, pokemon: results, message: 'O pokemon foi inserido com sucesso!' })
         })
       })
     },
@@ -33,19 +44,19 @@ const db = deps => {
           if (err) {
             errorHandler(err, `Falha ao deletar o pokemon de id: ${id}`, reject)
           }
-          resolve({ status: true })
+          resolve({ status: true, message: 'O pokemon foi removido com sucesso!' })
         })
       })
     },
-    update: (pokemon) => {
+    update: (id, pokemon) => {
+      console.log(id, pokemon)
       return new Promise((resolve, reject) => {
         const { errorHandler } = deps
-        const { id } = pokemon
         Pokemon.findByIdAndUpdate(id, pokemon, (err, pokemon) => {
           if (err) {
             errorHandler(err, `Falha ao atualizar o pokemon de id: ${id}`, reject)
           }
-          resolve({ status: true })
+          resolve({ status: true, message: 'O pokemon foi atualizado com sucesso!' })
         })
       })
     }

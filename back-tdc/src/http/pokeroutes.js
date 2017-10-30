@@ -11,8 +11,18 @@ const routes = (server) => {
     next()
   })
 
+  server.get('pokemon/:id', async (req, res, next) => {
+    const { id } = req.params
+    try {
+      res.json(await db.pokemons().getPokemon(id))
+    } catch (error) {
+      res.json(error)
+    }
+    next()
+  })
+
   server.post('pokemon', async (req, res, next) => {
-    const pokemon = req.params
+    const pokemon = req.body
     try {
       res.json(await db.pokemons().save(pokemon))
     } catch (error) {
@@ -21,17 +31,18 @@ const routes = (server) => {
     next()
   })
 
-  server.put('pokemon', async (req, res, next) => {
-    const pokemon = req.params
+  server.put('pokemon/:id', async (req, res, next) => {
+    const { id } = req.params
+    const pokemon = req.body
     try {
-      res.json(await db.pokemons().update(pokemon))
+      res.json(await db.pokemons().update(id, pokemon))
     } catch (error) {
       res.json(error)
     }
     next()
   })
 
-  server.del('pokemon', async (req, res, next) => {
+  server.del('pokemon/:id', async (req, res, next) => {
     const { id } = req.params
     try {
       res.json(await db.pokemons().del(id))
