@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 import './assets/css/bootstrap.min.css'
 import App from './App.vue'
 
-import ListarPokemons from './components/ListarPokemons.vue'
-import AdicionarPokemon from './components/AdicionarPokemon.vue'
+import List from './components/List.vue'
+import Add from './components/Add.vue'
+import Edit from './components/Edit.vue'
 
 const routes = [
-  { path: '/', component: ListarPokemons },
-  { path: '/add', component: AdicionarPokemon }
+  { path: '/', component: List },
+  { path: '/add', component: Add },
+  { path: '/edit/:id', component: Edit }
 ]
 
 const router = new VueRouter({

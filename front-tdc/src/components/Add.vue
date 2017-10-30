@@ -1,32 +1,41 @@
 <template lang="pug">
   .row
     .col-lg-12
-      form.bs-component
+      .bs-component
         h1.title Adicionar Pokemon
         .form-group
           label.control-label Nome
-          input(class="form-control", type="text")
+          input(class="form-control", v-model="pokemon.name", type="text")
         .form-group
           label.control-label Tipo
-          input(class="form-control", type="text")
+          input(class="form-control", v-model="pokemon.type", type="text")
         .btn-toolbar(role='toolbar')
             .btn-group
               router-link(to="/", class="btn btn-success")
                 span(class="glyphicon glyphicon-chevron-left") 
                 | Voltar para tela anterior
             .btn-group
-              button(type="submit", class="btn btn-primary") Salvar
+              button(@click="save(pokemon)", class="btn btn-primary") Salvar
 </template>
 
 <script>
 
+import { addPokemon } from '../services/pokemons'
+
 export default {
   data() {
     return {
-      form: {
+      pokemon: {
         name: '',
         type: ''
       }
+    }
+  },
+  methods: {
+    save (pokemon) {
+      addPokemon(pokemon).then(res => {
+        console.log(res)
+      })
     }
   }
 }
