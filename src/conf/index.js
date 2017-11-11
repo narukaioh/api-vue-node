@@ -3,16 +3,10 @@ const restify = require('restify')
 const server = restify.createServer()
 const pokeroutes = require('../http/pokeroutes')
 const routes = require('../http/routes')
-const cors = require('cors')
+const cors = require('./cors')
 
-const options = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}
-
-server.use(cors(options))
+server.pre(cors.preflight)
+server.use(cors.actual)
 server.use(restify.plugins.bodyParser())
 
 routes(server)
