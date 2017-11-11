@@ -6,7 +6,6 @@ const routes = require('../http/routes')
 const cors = require('cors')
 
 server.use(cors())
-server.use(restify.fullResponse())
 server.use(restify.plugins.bodyParser())
 
 routes(server)
