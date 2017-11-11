@@ -2,7 +2,12 @@ const corsMiddleware = require('restify-cors-middleware')
 
 const cors = corsMiddleware({
   preflightMaxAge: 5,
-  origins: ['*'],
+  origins: [
+    '*',
+    'http://surge.sh',
+    'http://*.surge.sh',
+    /^https?:\/\/surge.sh(:[\d]+)?$/
+  ],
   allowHeaders: ['*'],
   exposeHeaders: ['*']
 })
