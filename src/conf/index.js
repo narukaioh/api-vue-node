@@ -5,7 +5,14 @@ const pokeroutes = require('../http/pokeroutes')
 const routes = require('../http/routes')
 const cors = require('cors')
 
-server.use(cors())
+const options = {
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}
+
+server.use(cors(options))
 server.use(restify.plugins.bodyParser())
 
 routes(server)
