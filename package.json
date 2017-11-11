@@ -4,7 +4,7 @@
   "description": "API para apresentação do tdc",
   "main": "server.js",
   "engines": {
-    "node": "6.11.5",
+    "node": "8.7.0",
     "npm": "5.5.1"
   },
   "scripts": {
